@@ -9,14 +9,20 @@
         </button>
 
         <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav">
             @admin
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'nav-link']) }}
-                    </li>
-                </ul>
+                <li class="nav-item">
+                    {{ link_to_route('admin.dashboard', __('dashboard.dashboard'), [], ['class' => 'nav-link']) }}
+                </li>
             @endadmin
-
+            @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                <li>
+                    <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                        {{ $properties['native'] }}
+                    </a>
+                </li>
+            @endforeach
+            </ul>
             <ul class="navbar-nav ml-auto">
                 @guest
                     <li class="nav-item">{{ link_to_route('login', __('auth.login'), [], ['class' => 'nav-link']) }}</li>

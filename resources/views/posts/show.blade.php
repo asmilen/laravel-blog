@@ -6,7 +6,7 @@
       {{ Html::image($post->thumbnail->getUrl(), $post->thumbnail->name, ['class' => 'card-img-top']) }}
     @endif
 
-    <h1 v-pre>{{ $post->title }}</h1>
+    <h1 v-pre>{{ $post->sub_title }}</h1>
 
     <div class="mb-3">
       <small v-pre class="text-muted">{{ link_to_route('users.show', $post->author->fullname, $post->author) }}</small>,

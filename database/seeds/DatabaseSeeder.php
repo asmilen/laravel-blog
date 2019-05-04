@@ -25,10 +25,10 @@ class DatabaseSeeder extends Seeder
 
         // Users
         $user = User::firstOrCreate(
-            ['email' => 'darthvader@deathstar.ds'],
+            ['email' => 'namvu1210@gmail.com'],
             [
-                'name' => 'anakin',
-                'password' => Hash::make('4nak1n'),
+                'name' => 'Nam Vu',
+                'password' => Hash::make('123456'),
                 'email_verified_at' => now()
             ]
         );
@@ -36,20 +36,21 @@ class DatabaseSeeder extends Seeder
         $user->roles()->sync([$role_admin->id]);
 
         // Posts
-        $post = Post::firstOrCreate(
-            [
-                'title' => 'Hello World',
-                'author_id' => $user->id
+        $post = Post::Create([
+            'title' => 'Hello World',
+            'author_id' => $user->id,
+            'posted_at' => now(),
+            'en'  => [
+                'content' => "Welcome to Laravel-blog !<br><br>
+                    Don't forget to read the README before starting.<br><br>",
+                'sub_title' => 'Hello World'
             ],
-            [
-                'posted_at' => now(),
-                'content' => "
-                    Welcome to Laravel-blog !<br><br>
-                    Don't forget to read the README before starting.<br><br>
-                    Feel free to add a star on Laravel-blog on Github !<br><br>
-                    You can open an issue or (better) a PR if something went wrong."
-            ]
-        );
+            'vi'  => [
+                'content' => "Chào mừng đến với Laravel-blog !<br><br>
+                        Đừng quên đọc README trước khi bắt đầu.<br><br>",
+                'sub_title' => 'Chào mừng'
+            ],
+        ]);
 
         // Comments
         Comment::firstOrCreate(

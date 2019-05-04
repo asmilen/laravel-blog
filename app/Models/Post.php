@@ -9,10 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
+use Dimsav\Translatable\Translatable;
+
 
 class Post extends Model
 {
-    use Likeable;
+    use Likeable,Translatable;
 
     /**
      * The attributes that are mass assignable.
@@ -22,11 +24,12 @@ class Post extends Model
     protected $fillable = [
         'author_id',
         'title',
-        'content',
         'posted_at',
         'slug',
         'thumbnail_id',
     ];
+
+    public $translatedAttributes = ['content','sub_title'];
 
     /**
      * The attributes that should be mutated to dates.
